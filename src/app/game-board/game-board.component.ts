@@ -8,10 +8,7 @@ import { GameService } from '../game.service';
 })
 export class GameBoardComponent {
   constructor(public gameService: GameService) {}
-
-  // Method to handle the reset button click event
   onReset(): void {
-    // Call the game service to reset the game
     this.gameService.resetGame();
   }
 }
