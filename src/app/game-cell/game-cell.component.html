@@ -1,0 +1,4 @@
+<div class="cell" [ngClass]="{'x': gameService.board[row][col] === 'X', 'o': gameService.board[row][col] === 'O'}"
+  (click)="onClick()">
+  {{ gameService.board[row][col] }}
+</div>

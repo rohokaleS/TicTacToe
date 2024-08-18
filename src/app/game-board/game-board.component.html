@@ -1,0 +1,33 @@
+<!-- Game board layout with 3x3 grid of cells -->
+<div class="board">
+    <div *ngFor="let row of [0, 1, 2]; let i = index">
+        <app-game-cell *ngFor="let col of [0, 1, 2]; let j = index" [row]="i" [col]="j"></app-game-cell>
+    </div>
+</div>
+<!-- Display game status and reset button -->
+<div class="info">
+    <!-- Display winner message with conditional styling -->
+    <p *ngIf="gameService.winner === 'X'" [ngClass]="{'winner-x': gameService.winner === 'X'}">
+        Winner: {{ gameService.winner }}
+    </p>
+
+    <p *ngIf="gameService.winner === 'O'" [ngClass]="{'winner-o': gameService.winner === 'O'}">
+        Winner: {{ gameService.winner }}
+    </p>
+
+    <!-- Display the congratulations message with larger text and animation -->
+    <p *ngIf="gameService.winner" class="congratulations-message">
+        Congratulations {{ gameService.winner }}! You Win!
+    </p>
+
+    <p *ngIf="gameService.isDraw && !gameService.winner" [ngClass]="{'draw-message': gameService.isDraw}">
+        It's a Draw!
+    </p>
+
+    <p *ngIf="!gameService.winner && !gameService.isDraw"
+        [ngClass]="{'current-player-message': !gameService.winner && !gameService.isDraw}">
+        Current Player: {{ gameService.currentPlayer }}
+    </p>
+
+    <button (click)="onReset()">Reset Game</button>
+</div>
